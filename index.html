@@ -5,37 +5,63 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>test</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1rem;
+        }
+        h1 {
+            font-size: 1.5rem;
+        }
+        select {
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+        button {
+            margin-top: 1rem;
+            display: block;
+            width: 100%;
+        }
+        form {
+            margin-bottom: 2rem;
+        }
+        li {
+            margin-bottom: 2rem;
+        }
+    </style>
     
 </head>
 <body>
     
 </body>
 
+<h1>Select your rune</h1>
+
 <form onsubmit="return false;">
     <select id="list1">
-        <option>Fill</option>
+        <option>--</option>
     </select>
     <select id="list2">
-        <option>Fill</option>
+        <option>--</option>
     </select>
     <select id="list3">
-        <option>Fill</option>
+        <option>--</option>
     </select>
     <select id="list4">
-        <option>Fill</option>
+        <option>--</option>
     </select>
     <select id="list5">
-        <option>Fill</option>
+        <option>--</option>
     </select>
     <select id="list6">
-        <option>Fill</option>
+        <option>--</option>
     </select>
-    <button id="search" onclick="main();">search</button>
+    <button id="search" onclick="run();">search</button>
 </form>
 
-<div id="result">
+<ol id="result">
 
-</div>
+</ol>
 
 <script src='runes.js'></script>
 <script src='solution.js'></script>

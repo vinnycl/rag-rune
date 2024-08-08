@@ -13,17 +13,6 @@ var stringRunes = [
 ];
 
 
-// let stringRunes = [
-//     document.querySelector('#list1 option:checked').text,
-//     document.querySelector('#list2 option:checked').text,
-//     document.querySelector('#list3 option:checked').text,
-//     document.querySelector('#list4 option:checked').text,
-//     document.querySelector('#list5 option:checked').text,
-//     document.querySelector('#list6 option:checked').text,
-// ];
-
-
-
 function main() {
     // console.log("Starting...");
 
@@ -38,9 +27,9 @@ function main() {
     for (const key in solutions) {
         if (solutions.hasOwnProperty(key)) {
             // console.log(`${key} -> ${JSON.stringify(solutions[key])}`);
-            const paragraph = document.createElement("p");
-            paragraph.textContent =`${key} === ${JSON.stringify(solutions[key].skillRunes)} === ${JSON.stringify(solutions[key].attributeRunes)}`
-            result.appendChild(paragraph);
+            const list = document.createElement("li");
+            list.textContent =`${key} === ${JSON.stringify(solutions[key].skillRunes)} === ${JSON.stringify(solutions[key].attributeRunes)}`
+            result.appendChild(list);
         }
     }
 
@@ -156,4 +145,9 @@ function getRuneInt(s) {
 function saveSolution(runes) {
     const solution = new Solution(runes, stringRunes);
     solutions[solution.key] = solution;
+}
+
+
+function run() {
+    main();
 }
