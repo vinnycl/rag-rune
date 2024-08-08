@@ -39,7 +39,7 @@ function main() {
         if (solutions.hasOwnProperty(key)) {
             // console.log(`${key} -> ${JSON.stringify(solutions[key])}`);
             const paragraph = document.createElement("p");
-            paragraph.textContent =`${key} -> ${JSON.stringify(solutions[key])}`
+            paragraph.textContent =`${key} === ${JSON.stringify(solutions[key].skillRunes)} === ${JSON.stringify(solutions[key].attributeRunes)}`
             result.appendChild(paragraph);
         }
     }
