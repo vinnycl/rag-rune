@@ -1,30 +1,44 @@
 const allRunes = Runes.allRunes;
-const solutions = {};
+var solutions = {};
 
 const result = document.querySelector('#result');
 
-var stringRunes = [
-    "Shattered Falling Star Rune",
-    "Cretaceous Barrier Rune",
-    "Thunder Lightning Rune",
-    "Heart Vortex - Star Rune",
-    "Flare Protection - Star Rune",
-    "Quick Sand Confinement - Star Rune",
-];
-
-// document.addEventListener("DOMContentLoaded", function() {
 // var stringRunes = [
-//     document.querySelector('#list1 option:checked').text,
-//     document.querySelector('#list2 option:checked').text,
-//     document.querySelector('#list3 option:checked').text,
-//     document.querySelector('#list4 option:checked').text,
-//     document.querySelector('#list5 option:checked').text,
-//     document.querySelector('#list6 option:checked').text,
+//     "Shattered Falling Star Rune",
+//     "Cretaceous Barrier Rune",
+//     "Thunder Lightning Rune",
+//     "Heart Vortex - Star Rune",
+//     "Flare Protection - Star Rune",
+//     "Quick Sand Confinement - Star Rune",
 // ];
-// });
+
+function updateArray() {
+    // Get the selected options from both select elements
+    var list1Selected = document.querySelector('#list1 option:checked').text;
+    var list2Selected = document.querySelector('#list2 option:checked').text;
+    var list3Selected = document.querySelector('#list3 option:checked').text;
+    var list4Selected = document.querySelector('#list4 option:checked').text;
+    var list5Selected = document.querySelector('#list5 option:checked').text;
+    var list6Selected = document.querySelector('#list6 option:checked').text;
+
+    stringRunes = [list1Selected, list2Selected, list3Selected, list4Selected, list5Selected, list6Selected]
+}
+
+// Add event listeners to the select elements
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('list1').addEventListener('change', updateArray);
+    document.getElementById('list2').addEventListener('change', updateArray);
+    document.getElementById('list3').addEventListener('change', updateArray);
+    document.getElementById('list4').addEventListener('change', updateArray);
+    document.getElementById('list5').addEventListener('change', updateArray);
+    document.getElementById('list6').addEventListener('change', updateArray);
+});
+
+
 
 function main() {
     // console.log("Starting...");
+    solutions = {};
 
     document.getElementById('result').innerHTML = '';
     const runes = assembleRunes(stringRunes);
