@@ -12,6 +12,16 @@ var stringRunes = [
     "Quick Sand Confinement - Star Rune",
 ];
 
+// document.addEventListener("DOMContentLoaded", function() {
+// var stringRunes = [
+//     document.querySelector('#list1 option:checked').text,
+//     document.querySelector('#list2 option:checked').text,
+//     document.querySelector('#list3 option:checked').text,
+//     document.querySelector('#list4 option:checked').text,
+//     document.querySelector('#list5 option:checked').text,
+//     document.querySelector('#list6 option:checked').text,
+// ];
+// });
 
 function main() {
     // console.log("Starting...");
