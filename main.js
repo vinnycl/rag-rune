@@ -1,19 +1,81 @@
 const allRunes = Runes.allRunes;
+
+class Solution {
+    constructor(runes, stringRunes) {
+        this.runes = runes;
+        this.skillRunes = this.setSkillRunes(runes, stringRunes);
+        this.attributeRunes = this.setAttributeRunes(runes);
+        this.key = this.setKey(this.attributeRunes);
+    }
+
+    setKey(s) {
+        return `Ataque:${this.countChar(s, 'A')} Defesa:${this.countChar(s, 'D')} Buff:${this.countChar(s, 'B')} U Any:${this.countChar(s, 'U')}`;
+    }
+
+    setSkillRunes(runes, stringRunes) {
+        let s = "";
+        for (let i = 0; i < runes.length; i++) {
+            s += stringRunes[runes[i][4]];
+            if (i < runes.length - 1) s += ",";
+        }
+        return s;
+    }
+
+    setAttributeRunes(runes) {
+        return this.getRuneChar(runes[0][0]) + "," +
+               this.getRuneChar(runes[0][1], runes[1][0]) + "," +
+               this.getRuneChar(runes[0][2], runes[2][0]) + "," +
+               this.getRuneChar(runes[1][1], runes[3][0]) + "," +
+               this.getRuneChar(runes[1][2], runes[2][1], runes[4][0]) + "," +
+               this.getRuneChar(runes[2][2], runes[5][0]) + "," +
+               this.getRuneChar(runes[3][1]) + "," +
+               this.getRuneChar(runes[3][2], runes[4][1]) + "," +
+               this.getRuneChar(runes[4][2], runes[5][1]) + "," +
+               this.getRuneChar(runes[5][2]);
+    }
+
+    toString() {
+        return this.skillRunes + " | " + this.attributeRunes;
+    }
+
+    getRuneChar(i, j, k) {
+        return this.getRuneChar(i, Math.min(j, k));
+    }
+
+    getRuneChar(i, j) {
+        return this.getRuneChar(Math.min(i, j));
+    }
+
+    getRuneChar(i) {
+        let c = '';
+        switch (i) {
+            case 1: c = 'A'; break;
+            case 2: c = 'D'; break;
+            case 3: c = 'B'; break;
+            case 4: c = 'U'; break;
+            default: break;
+        }
+        return c;
+    }
+
+    countChar(s, c) {
+        let count = 0;
+        for (let i = 0; i < s.length; i++) {
+            if (s.charAt(i) === c) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+
+
 var solutions = {};
 
 const result = document.querySelector('#result');
 
-// var stringRunes = [
-//     "Shattered Falling Star Rune",
-//     "Cretaceous Barrier Rune",
-//     "Thunder Lightning Rune",
-//     "Heart Vortex - Star Rune",
-//     "Flare Protection - Star Rune",
-//     "Quick Sand Confinement - Star Rune",
-// ];
 
 function updateArray() {
-    // Get the selected options from both select elements
     var list1Selected = document.querySelector('#list1 option:checked').text;
     var list2Selected = document.querySelector('#list2 option:checked').text;
     var list3Selected = document.querySelector('#list3 option:checked').text;
@@ -24,7 +86,6 @@ function updateArray() {
     stringRunes = [list1Selected, list2Selected, list3Selected, list4Selected, list5Selected, list6Selected]
 }
 
-// Add event listeners to the select elements
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('list1').addEventListener('change', updateArray);
     document.getElementById('list2').addEventListener('change', updateArray);
@@ -37,27 +98,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function main() {
-    // console.log("Starting...");
     solutions = {};
 
     document.getElementById('result').innerHTML = '';
     const runes = assembleRunes(stringRunes);
-    // console.log("Runes assembled:");
-    // console.log(JSON.stringify(runes));
 
     quickpermBigRunes(runes, 0);
 
-    // console.log("Solutions:");
     for (const key in solutions) {
         if (solutions.hasOwnProperty(key)) {
-            // console.log(`${key} -> ${JSON.stringify(solutions[key])}`);
             const list = document.createElement("li");
             list.textContent =`${key} === ${JSON.stringify(solutions[key].skillRunes)} === ${JSON.stringify(solutions[key].attributeRunes)}`
             result.appendChild(list);
         }
     }
-
-    // console.log("The End!");
 }
 
 function assembleRunes(stringRunes) {

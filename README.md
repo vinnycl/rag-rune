@@ -1,1 +1,0 @@
-calculate runes for ROM
